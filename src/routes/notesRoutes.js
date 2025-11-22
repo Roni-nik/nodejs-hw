@@ -11,17 +11,20 @@ import {
 } from '../controllers/notesController.js';
 import { noteIdSchema, updateNoteSchema, getAllNotesSchema, createNoteSchema } from '../validations/notesValidation.js';
 
+import { authenticate } from "../middleware/authenticate.js";
+
 const router = Router();
 
+router.use("/notes", authenticate);
 
-router.post('/notes', celebrate(createNoteSchema), createNote);
+router.post('/notes',  celebrate(createNoteSchema), createNote);
 
 
 router.get('/notes',celebrate(getAllNotesSchema), getAllNotes);
 // router.get('/notes/:noteId', getNoteById);
 // router.post('/notes', createNote);
 // router.delete('/notes/:noteId', deleteNote);
-router.patch('/notes/:noteId', celebrate(updateNoteSchema), updateNote);
+router.patch('/notes/:noteId',  celebrate(updateNoteSchema), updateNote);
 
 
 
