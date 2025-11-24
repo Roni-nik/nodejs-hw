@@ -9,7 +9,7 @@ export const getAllNotes = async (req, res) => {
   const skip = (page - 1) * perPage;
 
   // Створюємо базовий запит до колекції
-  const notesQuery = Note.find()({ userId: req.user._id });
+  const notesQuery = Note.find({ userId: req.user._id });
 
   if (search) {
     notesQuery.where({ $text: { $search: search } });
@@ -38,7 +38,7 @@ export const getAllNotes = async (req, res) => {
 
 export const getNoteById = async (req, res, next) => {
   const { noteId } = req.params;
-  const note = await Note.findById({
+  const note = await Note.findOne({
     _id: noteId,
     userId: req.user._id,
   });
