@@ -12,6 +12,9 @@ import { errorHandler } from './middleware/errorHandler.js';
 import notesRoutes from './routes/notesRoutes.js';
 
 import authRoutes from './routes/authRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+
+
 // import notesRoutes from './routes/notesRoutes.js';
 
 const app = express();
@@ -28,6 +31,8 @@ app.use(authRoutes);
 app.use(notesRoutes);
 
 
+// Додаємо раути користувача
+app.use(userRoutes);
 
 
 app.use(notFoundHandler);
